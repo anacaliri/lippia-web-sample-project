@@ -2,10 +2,9 @@ package lippia.web.services;
 
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
-import lippia.web.constants.TrackerConstants;
 
 
-public class TrackerService extends ActionManager {
+public class ProjectsService extends ActionManager {
 
 
     public static void navigateTo(String url) {
@@ -17,7 +16,4 @@ public class TrackerService extends ActionManager {
         }
     }
 
-    public static void isSelected() {
-        WebActionManager.click(TrackerConstants.MENU_PROJECTS_OPTION);
-    }
 }

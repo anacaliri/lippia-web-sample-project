@@ -10,14 +10,14 @@ Feature: Manual login
       | login_url                        |
       | https://app.clockify.me/en/login |
 
-  @success @smoke
+  @success @Smoke
   Scenario Outline: Successful manual login
     Given user already is in <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs email <email>
     And user inputs password <password>
     And user clicks "Log In" button to log in
-    Then user is in <tracker_url> to start tracking projects
+    Then user is in <tracker_url> to start tracking work
     Examples:
       | login_url                        | email                  | password        | tracker_url                     |
       | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
@@ -31,7 +31,7 @@ Feature: Manual login
     And user clicks "Log In" button to log in
     Then error <error> is displayed
     Examples:
-      | reason         | login_url                        | email                   | password        | error                   |
+      | reason         | login_url                        | email                   | password        | error                     |
       | wrong password | https://app.clockify.me/en/login | anabelcaliri@gmail.com  | EzysE@7bY6_KAwJ | Invalid email or password |
       | wrong email    | https://app.clockify.me/en/login | anabel.caliri@gmail.com | EzysE@7bY6_KAwX | Invalid email or password |
 

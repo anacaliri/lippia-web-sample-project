@@ -1,9 +1,8 @@
 package lippia.web.constants;
 
-import org.openqa.selenium.WebElement;
+public class LoginConstants {
 
-public class LogInConstants {
-
+    public static final String LOGIN_URL = "https://app.clockify.me/en/login";
     public static final String EMAIL_INPUT = "id:email";
     public static final String PASSWORD_INPUT = "xpath://input[@class='cl-form-control'][@id='password']";
     public static final String LOG_IN_BUTTON = "xpath://button[@data-test-id='login-button'][contains(text(),'Log In')]";

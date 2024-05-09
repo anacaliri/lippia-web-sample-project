@@ -10,7 +10,7 @@ Feature: Manual login
       | login_url                        |
       | https://app.clockify.me/en/login |
 
-  @success @Smoke
+  @success @smoke
   Scenario Outline: Successful manual login
     Given user already is in <login_url>
     When user clicks "Log in manually" button to log in manually

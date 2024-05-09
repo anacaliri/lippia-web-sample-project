@@ -5,21 +5,26 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lippia.web.services.LogInService;
+import lippia.web.services.ResetService;
 import lippia.web.services.TrackerService;
 
 public class LogInSteps {
 
-    @Given("^user is in (.*)$")
-    public void navigateToLogInPage(String url) {
-        LogInService.navigateToLogInPage(url);
+    @Given("^user already is in (.*)$")
+    public void userIsInLogIn(String url) {
+        LogInService.navigateTo(url);
     }
 
 
-    @When("^user clicks (.*) button$")
-    public void userClicksLoginManuallyButton(String button) {
-        LogInService.pressLogInManuallyButton(button);
+    @When("^user clicks (.*) button to log in manually$")
+    public void clickOnLogInManuallyButton(String button) {
+        LogInService.clickOnLogInManuallyButton(button);
     }
 
+    @And("^user clicks (.*) button to log in$")
+    public void clickOnLogInButton(String button) {
+        LogInService.clickOnLogInButton(button);
+    }
 
     @When("^user inputs email (.*)$")
     public void userInputsEmail(String email) {
@@ -31,56 +36,73 @@ public class LogInSteps {
         LogInService.inputPassword(password);
     }
 
-    @And("^user clickk (.*) button$")
-    public void userClicksEyeButton(String button) {
+
+    @And("^user clicks (.*) button to show password$")
+    public void userShowsPassword(String button) {
         LogInService.showPassword(button);
     }
 
-    @And("^user press (.*) button$")
-    public void userClickEyeButton(String button) {
+    @And("^user clicks (.*) button to hide password$")
+    public void userHidesPassword(String button) {
         LogInService.hidePassword(button);
     }
 
-    @Then("^(.*) page is displayed$")
-    public void pageIsDisplayed(String url) {
-        switch (url) {
-            case "login_url":
-                LogInService.isLogInPageDisplayed(url);
-                break;
-            case "tracker_url":
-                TrackerService.isTrackerPageDisplayed(url);
-                break;
-            case "reset_password_url":
-                LogInService.isResetPasswordPageDisplayed(url);
-                break;
-        }
-
+    @And("^user clicks (.*) button to reset password$")
+    public void userClickOnResetButton(String button) {
+        LogInService.clickOnReset(button);
     }
 
-    @Then("error message (.*) is displayed")
-    public void errorMessageIsDisplayed(String error) {
-        LogInService.showErrorMessage(error);
+    @Then("error (.*) is displayed$")
+    public void invalidCredentialsErrorIsDisplayed(String error) {
+        LogInService.showInvalidCredentialsError(error);
 
     }
+    @Then("(.*) email error is displayed$")
+    public void requiredEmailErrorIsDisplayed(String error) {
+        LogInService.showRequiredEmailError(error);
+    }
 
-    @Then("password (.*) is displayed")
+
+    @Then("(.*) password error is displayed$")
+    public void requiredPasswordErrorIsDisplayed(String error) {
+        LogInService.showRequiredPasswordError(error);
+    }
+
+    @Then("password (.*) is displayed$")
     public void passwordIsDisplayed(String password) {
         LogInService.passwordIsDisplayed(password);
     }
-
-//   @And("user had input password {}")
-//   public void userHadInputPassword(String arg0) {
-//   }
-
 
     @Then("password is hidden")
     public void passwordIsHidden(String password) {
         LogInService.passwordIsHidden(password);
     }
 
-//   @And("(.*) button isn't enabled")
-//   public void isNotEnabled(String button) {
-//       LogInService.disableButton(button);
-//   }
+    @Then("^user is in (.*)$")
+    public void userGoesToLogIn(String url) {
+        LogInService.navigateTo(url);
+    }
 
+    @Then("(.*) button is (.*)$")
+    public void logInButtonIsDisable(String locator, String attribute) {
+        LogInService.disableButton(locator, attribute);
+    }
+    @Then("^user is in (.*) to reset the password$")
+    public void userGoesToReset(String url) {
+        ResetService.navigateTo(url);
+    }
+    @Then("user is in (.*) to start tracking projects$")
+    public void userGoesToTracker(String url) {
+        TrackerService.navigateTo(url);
+    }
+
+
+    @And("user enables input email")
+    public void userEnablesInputEmail() {
+        LogInService.enableInputEmail();
+    }
+    @And("user enables input (.*)$")
+    public void userEnablesInputPassword(String input) {
+        LogInService.enableInputPassword(input);
+    }
 }

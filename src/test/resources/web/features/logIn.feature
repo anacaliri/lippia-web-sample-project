@@ -1,66 +1,66 @@
-@login
-Feature: Login
+@manual_login
+Feature: Manual login
 
-  @Smoke @manual_login @success @run
+  @Smoke
+  Background:
+    Given user is in https://app.clockify.me/en/login
+
+  @success @Smoke
   Scenario Outline: Successful access to manual login
-    Given user is in <login_url>
     When user clicks "Log in manually" button
     Then <login_url> page is displayed
     Examples:
       | login_url                        |
       | https://app.clockify.me/en/login |
 
-  @Smoke @manual_login @success @run
+  @success
   Scenario Outline: Successful manual login
-    Given user is in <login_url>
-    And user clicks "Log in manually" button
-    When user inputs email <email>
+    When user clicks "Log in manually" button
+    And user inputs email <email>
     And user inputs password <password>
-    And user clicks "Log in" button
+    And user press "Log In" button
     Then <tracker_url> page is displayed
     Examples:
-      | login_url                        | email                  | password        | tracker_url                 |
-      | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://clockify.me/tracker |
+      |  email                  | password        | tracker_url                     |
+      |  anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
 
-
-  @smoke @manual_login @fail
+  @fail @Smoke
   Scenario Outline: Unsuccessful manual login due to <reason> input
-    Given user is in <login_url>
-    When user inputs email <email>
+    When user clicks "Log in manually" button
+    And user inputs email <email>
     And user inputs password <password>
-    And user clicks <button> button
+    And user press "Log In" button
     Then error message <message> is displayed
     Examples:
-      | reason         | login_url                        | email                   | password        | button | message                   |
-      | wrong password | https://app.clockify.me/en/login | anabelcaliri@gmail.com  | EzysE@7bY6_KAwJ | Log in | Invalid email or password |
-      | wrong email    | https://app.clockify.me/en/login | anabel.caliri@gmail.com | EzysE@7bY6_KAwX | Log in | Invalid email or password |
+      | reason         |  email                   | password        |  message                   |
+      | wrong password |  anabelcaliri@gmail.com  | EzysE@7bY6_KAwJ |  Invalid email or password |
+      | wrong email    |  anabel.caliri@gmail.com | EzysE@7bY6_KAwX |  Invalid email or password |
 
-  @success
+  @success @Smoke
   Scenario Outline: Show password successfully
-    Given user is in <login_url>
-    When user inputs password <password>
-    And user clicks <button> button
+    When user clicks "Log in manually" button
+    And user inputs password <password>
+    And user clickk "eye" button
     Then password <password> is displayed
     Examples:
-      | login_url                        | password        | button |
-      | https://app.clockify.me/en/login | EzysE@7bY6_KAwX | eye    |
+      | password        |
+      | EzysE@7bY6_KAwX |
 
-  @success
+  @success @Smoke
   Scenario Outline: Hide password successfully
-    Given user is in <login_url>
-    And user had input password <password>
-    And user had clicked the eye button to show the password
-    When user clicks <button> button
+    Given user clicks "Log in manually" button
+    And user inputs password <password>
+    And user clickk "eye" button
+    When user press "eye" button
     Then password is hidden
     Examples:
-      | login_url                        | password        | button |
-      | https://app.clockify.me/en/login | EzysE@7bY6_KAwX | eye    |
+      | password        |
+      | EzysE@7bY6_KAwX |
 
   @success
   Scenario Outline: Go to reset password
-    Given user is in <login_url>
     When user clicks <button> button
     Then user is in <reset_password_url>
     Examples:
-      | login_url                        | button           | reset_password_url                        |
-      | https://app.clockify.me/en/login | Forgot password? | https://app.clockify.me/reset-password?t= |
+    | button           | reset_password_url                        |
+    | Forgot password? | https://app.clockify.me/reset-password?t= |

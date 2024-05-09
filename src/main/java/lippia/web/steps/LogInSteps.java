@@ -10,21 +10,17 @@ import lippia.web.services.TrackerService;
 public class LogInSteps {
 
     @Given("^user is in (.*)$")
-    public void userIsInLogInPage(String url) {
-        LogInService.isLogInPageLoaded(url);
+    public void navigateToLogInPage(String url) {
+        LogInService.navigateToLogInPage(url);
     }
 
-    @And("^user clicks (.*) button$")
-    public void userClicksButton(String button) {
-        switch (button) {
-            case "Log in manually":
-                LogInService.pressLogInManuallyButton();
-                break;
-            case "Log in":
-                LogInService.pressLogInButton();
-                break;
-        };
+
+    @When("^user clicks (.*) button$")
+    public void userClicksLoginManuallyButton(String button) {
+        LogInService.pressLogInManuallyButton(button);
     }
+
+
     @When("^user inputs email (.*)$")
     public void userInputsEmail(String email) {
         LogInService.inputEmail(email);
@@ -35,26 +31,16 @@ public class LogInSteps {
         LogInService.inputPassword(password);
     }
 
-//    @And("user clicks (.*) button")
-//    public void userClicksButton() {
-//        LogInService.pressLogInButton();
-//    }
+    @And("^user clickk (.*) button$")
+    public void userClicksEyeButton(String button) {
+        LogInService.showPassword(button);
+    }
 
+    @And("^user press (.*) button$")
+    public void userClickEyeButton(String button) {
+        LogInService.hidePassword(button);
+    }
 
-    //   @And("user clicks (.*) button")
- //   public void userClicksButton() {
- //       LogInService.pressEyeButton();
- //   }
-  // @Then("^(.*) page is displayed$")
-  // public void trackerPageIsDisplayed(String url) {
-  //     TrackerService.isTrackerDisplayed(url);
-  // }
-
-
-  // @Then("^(.*) page is displayed$")
-  // public void logInPageIsDisplayed(String url) {
-  //     LogInService.isLogInPageLoaded(url);
-  // }
     @Then("^(.*) page is displayed$")
     public void pageIsDisplayed(String url) {
         switch (url) {
@@ -64,34 +50,37 @@ public class LogInSteps {
             case "tracker_url":
                 TrackerService.isTrackerPageDisplayed(url);
                 break;
+            case "reset_password_url":
+                LogInService.isResetPasswordPageDisplayed(url);
+                break;
         }
-        ;
-    }
-}
-//   @Then("error message (.*) is displayed")
- //   public void errorMessageIsDisplayed(String error) {
- //       LogInService.showErrorMessage(error);
- //   }
 
-//   @Then("password (.*) is displayed")
-//   public void passwordIsDisplayed(String password) {
-//       LogInService.showPassword();
-//   }
+    }
+
+    @Then("error message (.*) is displayed")
+    public void errorMessageIsDisplayed(String error) {
+        LogInService.showErrorMessage(error);
+
+    }
+
+    @Then("password (.*) is displayed")
+    public void passwordIsDisplayed(String password) {
+        LogInService.passwordIsDisplayed(password);
+    }
 
 //   @And("user had input password {}")
 //   public void userHadInputPassword(String arg0) {
 //   }
 
-//   @And("user had clicked the eye button to show the password")
-//   public void userHadClickedTheEyeButtonToShowThePassword() {
-//   }
 
-//   @Then("password is hidden")
-//   public void passwordIsHidden() {
-//   }
+    @Then("password is hidden")
+    public void passwordIsHidden(String password) {
+        LogInService.passwordIsHidden(password);
+    }
 
 //   @And("(.*) button isn't enabled")
 //   public void isNotEnabled(String button) {
 //       LogInService.disableButton(button);
 //   }
 
+}

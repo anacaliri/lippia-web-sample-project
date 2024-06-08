@@ -10,14 +10,15 @@ import lippia.web.services.TrackerService;
 
 public class LoginSteps {
 
-    @Given("^user already is in (.*)$")
-    public void userAlreadyIsInLogIn(String url) {
+    @Given("^user is in login page (.*)$")
+    public void userIsInLogIn(String url) {
         LoginService.navigateTo(url);
     }
 
-    @Then("^user is in (.*)$")
-    public void userIsInLogIn(String url) {
+    @Then("^user is in manual login page (.*)$")
+    public void userIsInManualLogIn(String url) {
         LoginService.navigateTo(url);
+        //LoginService.validateLoginButtonIsVisible();
     }
     @When("^user clicks (.*) button to log in manually$")
     public void clickOnLogInManuallyButton(String button) {
@@ -94,7 +95,7 @@ public class LoginSteps {
     public void userGoesToReset(String url) {
         ResetService.navigateTo(url);
     }
-    @Then("^user is in (.*) to start tracking work$")
+    @Then("^user is in tracker page (.*) to start tracking work$")
     public void userGoesToTracker(String url) {
         TrackerService.navigateTo(url);
     }

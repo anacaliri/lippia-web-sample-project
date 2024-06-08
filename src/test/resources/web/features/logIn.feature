@@ -1,31 +1,30 @@
 @manual_login
 Feature: Manual login
 
-  @successfulAccessToManualLogin @smoke @run
+  @successfulAccessToManualLogin @smoke
   Scenario Outline: Successful access to manual login
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
-    Then user is in <login_url>
-    #And
+    Then user is in manual login page <login_url>
     Examples:
       | login_url                        |
       | https://app.clockify.me/en/login |
 
-  @success @smoke
+  @successfulManualLogin @smoke @run
   Scenario Outline: Successful manual login
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs email <email>
     And user inputs password <password>
     And user clicks "Log In" button to log in
-    Then user is in <tracker_url> to start tracking work
+    Then user is in tracker page <tracker_url> to start tracking work
     Examples:
       | login_url                        | email                  | password        | tracker_url                     |
       | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
 
   @fail @smoke
   Scenario Outline: Unsuccessful manual login due to <reason> input
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs email <email>
     And user inputs password <password>
@@ -39,7 +38,7 @@ Feature: Manual login
 
   @fail
   Scenario Outline: Unsuccessful manual login due to missing email
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user enables input email
     And user inputs password <password>

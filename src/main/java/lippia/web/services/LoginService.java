@@ -11,6 +11,9 @@ public class LoginService extends ActionManager {
         WebActionManager.navigateTo(url);
     }
 
+    public static void validateLoginButtonInputIsVisible() {
+        WebActionManager.isVisible(LoginConstants.LOG_IN_BUTTON);
+    }
 
     public static void inputEmail(String email) {
         WebActionManager.setInput(LoginConstants.EMAIL_INPUT, email);

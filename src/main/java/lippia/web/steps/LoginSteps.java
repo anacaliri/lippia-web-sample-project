@@ -52,7 +52,7 @@ public class LoginSteps {
     }
 
     @And("^user clicks (.*) button to reset password$")
-    public void userClickOnResetButton(String button) {
+    public void userClicksOnResetButton(String button) {
         LoginService.clickOnReset(button);
     }
 

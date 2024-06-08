@@ -74,24 +74,24 @@ Feature: Manual login
       | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
 
 
-  @hidePasswordSuccessfully @success @run
+  @hidePasswordSuccessfully @success
   Scenario Outline: Hide password successfully
     Given user is in login page <login_url>
-    When user clicks "Log in manually" button to log in manually
+    When user clicks <login_button> button to log in manually
     And user inputs password <password>
-    And user clicks "eye" button to show password
-    And user clicks "eye" button to hide password
+    And user clicks <show> button to show password
+    And user clicks <hide> button to hide password
     Then password <password> is hidden
     Examples:
-      | login_url                        | password        |
-      | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
+      | login_url                        | login_button    | password        | show | hide |
+      | https://app.clockify.me/en/login | Log in manually | EzysE@7bYjhfAwX | eye  | eye  |
 
-  @success @smoke
+  @goToResetPassword @success @smoke @run
   Scenario Outline: Go to reset password
-    Given user already is in <login_url>
-    When user clicks "Log in manually" button to log in manually
-    And user clicks <button> button to reset password
+    Given user is in login page <login_url>
+    When user clicks <login_button> button to log in manually
+    And user clicks <reset_button> button to reset password
     Then user is in <reset_password_url> to reset the password
     Examples:
-      | button           | reset_password_url                        |
-      | Forgot password? | https://app.clockify.me/reset-password?t= |
+      | login_url                        | login_button    | reset_button     | reset_password_url                        |
+      | https://app.clockify.me/en/login | Log in manually | Forgot password? | https://app.clockify.me/reset-password?t= |

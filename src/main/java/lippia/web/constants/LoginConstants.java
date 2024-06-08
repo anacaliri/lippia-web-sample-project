@@ -17,5 +17,5 @@ public class LoginConstants {
     public static final String ACTIVE_EYE_BUTTON = "xpath://img[@src='/assets/ui-icons/password-toggle-active.svg']";
     public static final String PASSWORD = "xpath://input[@id='password'][@type='text']";
   public static final String HIDDEN_PASSWORD = "xpath://input[@id='password'][@type='password']";
-  public static final String FORGOT_PASSWORD_BUTTON = "xpath://a[@class='ng-tns-c128-2'][contains(.,'Forgot password?')]";
+  public static final String FORGOT_PASSWORD_BUTTON = "xpath://a[@class='ng-tns-c129-2'][contains(.,'Forgot password?')]";
 }

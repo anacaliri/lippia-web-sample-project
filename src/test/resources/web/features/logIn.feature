@@ -1,7 +1,7 @@
 @manual_login
 Feature: Manual login
 
-  @successfulAccessToManualLogin @smoke
+  @successfulAccessToManualLogin @smoke @success
   Scenario Outline: Successful access to manual login
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -10,7 +10,7 @@ Feature: Manual login
       | login_url                        |
       | https://app.clockify.me/en/login |
 
-  @successfulManualLogin @smoke @run
+  @successfulManualLogin @smoke @success
   Scenario Outline: Successful manual login
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -22,7 +22,8 @@ Feature: Manual login
       | login_url                        | email                  | password        | tracker_url                     |
       | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
 
-  @fail @smoke
+
+  @successfulManualLogin @fail @smoke #falta
   Scenario Outline: Unsuccessful manual login due to <reason> input
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -36,7 +37,7 @@ Feature: Manual login
       | wrong email    | https://app.clockify.me/en/login | anabel.caliri@gmail.com | EzysE@7bY6_KAwX | Invalid email or password |
 
 
-  @fail
+  @fail #falta
   Scenario Outline: Unsuccessful manual login due to missing email
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -48,7 +49,7 @@ Feature: Manual login
       | login_url                        | password        |
       | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
 
-  @fail
+  @fail #falta
   Scenario Outline: Unsuccessful manual login due to missing password
     Given user already is in <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -61,16 +62,18 @@ Feature: Manual login
       | login_url                        | email            |
       | https://app.clockify.me/en/login | anabel@gmail.com |
 
-  @success @smoke
+  @showPasswordSuccessfully @success @smoke @run
   Scenario Outline: Show password successfully
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs password <password>
     And user clicks "eye" button to show password
     Then password <password> is displayed
     Examples:
-      | password        |
-      | EzysE@7bY6_KAwX |
+      | login_url                        | password        |
+      | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
+
+
 
   @success
   Scenario Outline: Hide password successfully

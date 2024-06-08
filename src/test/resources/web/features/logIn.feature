@@ -62,7 +62,7 @@ Feature: Manual login
       | login_url                        | email            |
       | https://app.clockify.me/en/login | anabel@gmail.com |
 
-  @showPasswordSuccessfully @success @smoke @run
+  @showPasswordSuccessfully @success @smoke
   Scenario Outline: Show password successfully
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -74,18 +74,17 @@ Feature: Manual login
       | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
 
 
-
-  @success
+  @hidePasswordSuccessfully @success @run
   Scenario Outline: Hide password successfully
-    Given user already is in <login_url>
+    Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs password <password>
     And user clicks "eye" button to show password
     And user clicks "eye" button to hide password
-    Then password is hidden
+    Then password <password> is hidden
     Examples:
-      | password        |
-      | EzysE@7bY6_KAwX |
+      | login_url                        | password        |
+      | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
 
   @success @smoke
   Scenario Outline: Go to reset password

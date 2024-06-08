@@ -77,7 +77,7 @@ public class LoginSteps {
         LoginService.passwordIsDisplayed(password);
     }
 
-    @Then("password is hidden")
+    @Then("^password (.*) is hidden$")
     public void passwordIsHidden(String password) {
         LoginService.passwordIsHidden(password);
     }

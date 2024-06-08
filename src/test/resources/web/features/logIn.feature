@@ -1,11 +1,12 @@
 @manual_login
 Feature: Manual login
 
-  @success @smoke
+  @successfulAccessToManualLogin @smoke @run
   Scenario Outline: Successful access to manual login
     Given user already is in <login_url>
     When user clicks "Log in manually" button to log in manually
     Then user is in <login_url>
+    #And
     Examples:
       | login_url                        |
       | https://app.clockify.me/en/login |

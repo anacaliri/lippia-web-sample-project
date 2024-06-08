@@ -11,11 +11,14 @@ import lippia.web.services.TrackerService;
 public class LoginSteps {
 
     @Given("^user already is in (.*)$")
-    public void userIsInLogIn(String url) {
+    public void userAlreadyIsInLogIn(String url) {
         LoginService.navigateTo(url);
     }
 
-
+    @Then("^user is in (.*)$")
+    public void userIsInLogIn(String url) {
+        LoginService.navigateTo(url);
+    }
     @When("^user clicks (.*) button to log in manually$")
     public void clickOnLogInManuallyButton(String button) {
         LoginService.clickOnLogInManuallyButton(button);

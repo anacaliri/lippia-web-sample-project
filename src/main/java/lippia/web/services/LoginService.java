@@ -89,7 +89,7 @@ public class LoginService extends ActionManager {
         WebActionManager.click(LoginConstants.PASSWORD_INPUT);
     }
 
-    public static void logIn(String email, String password){
+    public static void doLogIn(String email, String password){
         WebActionManager.navigateTo(LoginConstants.LOGIN_URL);
         WebActionManager.click(LoginConstants.LOG_IN_MANUALLY_BUTTON);
         WebActionManager.setInput(LoginConstants.EMAIL_INPUT, email);
@@ -98,4 +98,8 @@ public class LoginService extends ActionManager {
     }
 
 
+    public static void eraseEmail() {
+        WebElement input = WebActionManager.getElement(LoginConstants.EMAIL_INPUT);
+        input.clear();
+    }
 }

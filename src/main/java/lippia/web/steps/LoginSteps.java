@@ -117,6 +117,10 @@ public class LoginSteps {
     public void userErasePassword() {
         LoginService.erasePassword();
     }
+    @And("^user erase email$")
+    public void userEraseEmail() {
+        LoginService.eraseEmail();
+    }
     @And("^user clicks (.*) to inactive input$")
     public void userClicksElsewhere(String locator) {
         LoginService.clickElsewhere(locator);

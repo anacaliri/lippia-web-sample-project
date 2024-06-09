@@ -13,7 +13,7 @@ public class TrackerSteps {
 
     @Given("^user is logged in Clockify with email (.*) and password (.*)$")
     public void userIsLoggedIn(String email, String password) {
-        LoginService.logIn(email, password);
+        LoginService.doLogIn(email, password);
     }
     @When("^user clicks option (.*) from the menu$")
     public void userClicksOptionFromTheMenu(String button) {

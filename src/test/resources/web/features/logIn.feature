@@ -23,7 +23,7 @@ Feature: Manual login
       | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
 
 
-  @unsuccessfulManualLogin @fail @smoke @run
+  @unsuccessfulManualLogin @fail @smoke
   Scenario Outline: Unsuccessful manual login due to <reason> input
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
@@ -33,23 +33,24 @@ Feature: Manual login
     Then invalid credentials error <error_message> is displayed
     And <login_button> button is <attribute>
     Examples:
-      | reason         | login_url                        | email                   | password        | login_button | attribute | error_message             |
-      | wrong password | https://app.clockify.me/en/login | belcaliri@gmail.com  | EzysE@7bY6_KAwJ | Log In       | disabled  | Invalid email or password |
-      | wrong email    | https://app.clockify.me/en/login | acaliri@gmail.com | EzysE@7bY6_KAwX | Log In       | disabled  | Invalid email or password |
+      | reason         | login_url                        | email               | password        | login_button | attribute | error_message             |
+      | wrong password | https://app.clockify.me/en/login | belcaliri@gmail.com | EzysE@7bY6_KAwJ | Log In       | disabled  | Invalid email or password |
+      | wrong email    | https://app.clockify.me/en/login | acaliri@gmail.com   | EzysE@7bY6_KAwX | Log In       | disabled  | Invalid email or password |
 
 
-  @UnsuccessfulManualLoginDueToMissingEmail @fail #falta
+  @UnsuccessfulManualLoginDueToMissingEmail @fail #falla
   Scenario Outline: Unsuccessful manual login due to missing email
     Given user is in login page <login_url>
     When user clicks <manual_login_button> button to log in manually
-    And user enables input email
     And user inputs password <password>
+    And user inputs email <email>
+    And user erase email
+    And user clicks <login_button> button to log in
     Then <login_button> button is <attribute>
     And  invalid credentials error <error_message> is displayed
     Examples:
-      | login_url                        | manual_login_button | password        | login_button | attribute | error_message     |
-      | https://app.clockify.me/en/login | Log in manually     | EzysE@7bYjhfAwX | Log In       | disabled  | Email is required |
-    #  | missing email  | https://app.clockify.me/en/login | anabelcaliri@gmail.com  | Ezys            | Password is not valid     |
+      | login_url                        | manual_login_button | password        | email               | login_button | attribute | error_message     |
+      | https://app.clockify.me/en/login | Log in manually     | EzysE@7bYjhfAwX | belcaliri@gmail.com | Log In       | disabled  | Email is required |
 
   @fail #falla
   Scenario Outline: Unsuccessful manual login due to missing password

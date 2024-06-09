@@ -21,9 +21,13 @@ public class TrackerSteps {
     }
 
     @Then("^user is in (.*) to start creating projects$")
-    public void userGoesToProjects(String url) {
-        ProjectsService.navigateTo(url);
+    public void userGoesToProjects(String option) {
+        ProjectsService.navigateTo(option);
     }
 
 
+    @When("^user clicks (.*) in the side menu$")
+    public void userClicksProjectsInTheSideMenu(String button) {
+        TrackerService.clickOnProjects(button);
+    }
 }

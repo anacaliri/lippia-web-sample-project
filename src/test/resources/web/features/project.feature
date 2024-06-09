@@ -1,7 +1,7 @@
-@tracker
-Feature: Tracker
+@project
+Feature: Project
 
-  @goToProjects @Smoke
+  @goTocreateNewProject @Smoke @run
   Scenario Outline: Go to Projects
     Given user is logged in Clockify with email <email> and password <password>
     When user clicks Projects in the side menu

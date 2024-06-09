@@ -17,7 +17,12 @@ public class TrackerService extends ActionManager {
         }
     }
 
-    public static void isSelected() {
-        WebActionManager.click(TrackerConstants.MENU_PROJECTS_OPTION);
+    public static void clickOnProjects(String button) {
+        WebActionManager.click(TrackerConstants.MENU_PROJECTS);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -2,7 +2,7 @@
 Feature: Log out
 
 
-  @successfulLogout @smoke @success @run
+  @successfulLogout @smoke @success
   Scenario Outline: Successful log out
     Given user is logged in with email <email> and password <password>
     When user clicks avatar button

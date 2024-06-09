@@ -125,4 +125,8 @@ public class LoginSteps {
     public void userClicksElsewhere(String locator) {
         LoginService.clickElsewhere(locator);
     }
+    @Given("^user is logged in with email (.*) and password (.*)$")
+    public void userIsLoggedIn(String email, String password) {
+        LoginService.doLogIn(email, password);
+    }
 }

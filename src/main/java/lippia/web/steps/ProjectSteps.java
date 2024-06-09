@@ -3,7 +3,6 @@ package lippia.web.steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import lippia.web.services.ProjectService;
-import lippia.web.services.WorkspaceService;
 
 public class ProjectSteps {
     @Then("^user is in (.*) to start creating projects$")
@@ -17,7 +16,7 @@ public class ProjectSteps {
     }
 
     @And("^user inputs project name (.*)$")
-    public void userInputsProjectNameName(String name) {
+    public void userInputsProjectName(String name) {
         ProjectService.inputProjectName(name);
     }
 

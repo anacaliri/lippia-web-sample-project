@@ -1,7 +1,7 @@
 @project
 Feature: Project
 
-  @goTocreateNewProject @Smoke @run
+  @createNewProject @Smoke @run
   Scenario Outline: Create new project
     Given user is logged in Clockify with email <email> and password <password>
     And user clicks Projects in the side menu
@@ -11,7 +11,7 @@ Feature: Project
     And user clicks Create to create the project
     Then user is in projects page and the project <name> has been created
     Examples:
-      | email                  | password        | name        |
+      | email                  | password        | name       |
       | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | Project # |
 
 

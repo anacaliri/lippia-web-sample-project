@@ -31,10 +31,6 @@ public class WorkspaceSteps {
         WorkspaceService.inputWorkspaceName(name);
     }
 
-    @Then("^user is in workspaces page (.*)$")
-    public void userIsInWorkspacesPageWorkspaces_url(String url) {
-        WorkspaceService.navigateTo(url);
-    }
 
     @And("^user clicks (.*) to create the workspace$")
     public void userClicksCreateButton(String button) {

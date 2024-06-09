@@ -1,10 +1,8 @@
 package lippia.web.steps;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lippia.web.services.LoginService;
-import lippia.web.services.ProjectsService;
 import lippia.web.services.TrackerService;
 
 public class TrackerSteps {
@@ -20,10 +18,7 @@ public class TrackerSteps {
         TrackerService.click(button);
     }
 
-    @Then("^user is in (.*) to start creating projects$")
-    public void userGoesToProjects(String option) {
-        ProjectsService.navigateTo(option);
-    }
+
 
 
     @When("^user clicks (.*) in the side menu$")

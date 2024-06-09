@@ -32,4 +32,5 @@ public class WorkspaceService extends ActionManager {
     public static void navigateTo(String url) {
         WebActionManager.navigateTo(url);
     }
+
 }

@@ -23,75 +23,89 @@ Feature: Manual login
       | https://app.clockify.me/en/login | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | https://app.clockify.me/tracker |
 
 
-  @successfulManualLogin @fail @smoke #falta
+  @unsuccessfulManualLogin @fail @smoke #falta
   Scenario Outline: Unsuccessful manual login due to <reason> input
     Given user is in login page <login_url>
     When user clicks "Log in manually" button to log in manually
     And user inputs email <email>
     And user inputs password <password>
     And user clicks "Log In" button to log in
-    Then error <error> is displayed
+    Then error <error_message> is displayed
     Examples:
       | reason         | login_url                        | email                   | password        | error                     |
       | wrong password | https://app.clockify.me/en/login | anabelcaliri@gmail.com  | EzysE@7bY6_KAwJ | Invalid email or password |
       | wrong email    | https://app.clockify.me/en/login | anabel.caliri@gmail.com | EzysE@7bY6_KAwX | Invalid email or password |
 
 
-  @fail #falta
+  @UnsuccessfulManualLoginDueToMissingEmail @fail #falta
   Scenario Outline: Unsuccessful manual login due to missing email
     Given user is in login page <login_url>
-    When user clicks "Log in manually" button to log in manually
+    When user clicks <manual_login_button> button to log in manually
     And user enables input email
     And user inputs password <password>
-    Then "Log In" button is "disabled"
-    And "Email is required" email error is displayed
+    Then <login_button> button is <attribute>
+    And  <error_message> input email error is displayed
     Examples:
-      | login_url                        | password        |
-      | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
+      | login_url                        | manual_login_button | password        | login_button | attribute | error_message     |
+      | https://app.clockify.me/en/login | Log in manually     | EzysE@7bYjhfAwX | Log In       | disabled  | Email is required |
+    #  | missing email  | https://app.clockify.me/en/login | anabelcaliri@gmail.com  | Ezys            | Password is not valid     |
 
-  @fail #falta
+  @fail #no anda
   Scenario Outline: Unsuccessful manual login due to missing password
-    Given user already is in <login_url>
-    When user clicks "Log in manually" button to log in manually
-    And user inputs email <email>
-    And user enables input "password"
-    Then "Log In" button is disable
-    And "Password is required" password error is displayed
-
+    Given user is in login page <login_url>
+    When user clicks <manual_login_button> button to log in manually
+    And user inputs password <password>
+    And user erase password
+    And user clicks elsewhere
+    Then <login_button> button is disable
+    And required password error <error_message> is displayed
     Examples:
-      | login_url                        | email            |
-      | https://app.clockify.me/en/login | anabel@gmail.com |
+      | login_url                        | manual_login_button | email                  | password | login_button | error_message        |
+      | https://app.clockify.me/en/login | Log in manually     | anabelcaliri@gmail.com | x        | Log In       | Password is required |
+
+  @UnsuccessfulManualLoginDueToInvalidPassword @fail @run
+  Scenario Outline: Unsuccessful manual login due to invalid password
+    Given user is in login page <login_url>
+    When user clicks <manual_login_button> button to log in manually
+    And user inputs email <email>
+    And user inputs password <password>
+    And user clicks <login_button> button to log in
+    Then <login_button> button is disabled
+    And invalid password error <error_message> is displayed
+    Examples:
+      | login_url                        | manual_login_button | email                  | password | login_button | error_message        |
+      | https://app.clockify.me/en/login | Log in manually     | anabelcaliri@gmail.com | x        | Log In       | Password is not valid |
 
   @showPasswordSuccessfully @success @smoke
   Scenario Outline: Show password successfully
     Given user is in login page <login_url>
-    When user clicks "Log in manually" button to log in manually
+    When user clicks <manual_login_button> button to log in manually
     And user inputs password <password>
-    And user clicks "eye" button to show password
+    And user clicks <show> button to show password
     Then password <password> is displayed
     Examples:
-      | login_url                        | password        |
-      | https://app.clockify.me/en/login | EzysE@7bYjhfAwX |
+      | login_url                        | manual_login_button | password        | show |
+      | https://app.clockify.me/en/login | Log in manually     | EzysE@7bYjhfAwX | eye  |
 
 
   @hidePasswordSuccessfully @success
   Scenario Outline: Hide password successfully
     Given user is in login page <login_url>
-    When user clicks <login_button> button to log in manually
+    When user clicks <manual_login_button> button to log in manually
     And user inputs password <password>
     And user clicks <show> button to show password
     And user clicks <hide> button to hide password
     Then password <password> is hidden
     Examples:
-      | login_url                        | login_button    | password        | show | hide |
-      | https://app.clockify.me/en/login | Log in manually | EzysE@7bYjhfAwX | eye  | eye  |
+      | login_url                        | manual_login_button | password        | show | hide |
+      | https://app.clockify.me/en/login | Log in manually     | EzysE@7bYjhfAwX | eye  | eye  |
 
-  @goToResetPassword @success @smoke @run
+  @goToResetPassword @success @smoke
   Scenario Outline: Go to reset password
     Given user is in login page <login_url>
-    When user clicks <login_button> button to log in manually
+    When user clicks <manual_login_button> button to log in manually
     And user clicks <reset_button> button to reset password
     Then user is in <reset_password_url> to reset the password
     Examples:
-      | login_url                        | login_button    | reset_button     | reset_password_url                        |
-      | https://app.clockify.me/en/login | Log in manually | Forgot password? | https://app.clockify.me/reset-password?t= |
+      | login_url                        | manual_login_button | reset_button     | reset_password_url                        |
+      | https://app.clockify.me/en/login | Log in manually     | Forgot password? | https://app.clockify.me/reset-password?t= |

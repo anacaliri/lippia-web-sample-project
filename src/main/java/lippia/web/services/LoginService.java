@@ -3,6 +3,7 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.LoginConstants;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 public class LoginService extends ActionManager {
@@ -21,6 +22,13 @@ public class LoginService extends ActionManager {
 
     public static void inputPassword(String password) {
         WebActionManager.setInput(LoginConstants.PASSWORD_INPUT, password);
+    }
+    public static void erasePassword() {
+        WebElement input = WebActionManager.getElement(LoginConstants.PASSWORD_INPUT);
+        input.clear();
+    }
+    public static void clickElsewhere(String locator) {
+        WebActionManager.click(LoginConstants.FORM);
     }
 
     public static void clickOnLogInManuallyButton(String button) {
@@ -64,15 +72,20 @@ public class LoginService extends ActionManager {
         WebActionManager.getText(LoginConstants.REQUIRED_PASSWORD_ERROR);
     }
 
-
-    public static void disableButton(String locator, String attribute) {
-        WebActionManager.getAttribute(LoginConstants.LOG_IN_BUTTON, "disabled");
+    public static void showInvalidPasswordError(String error) {
+        WebActionManager.getText(LoginConstants.INVALID_PASSWORD_ERROR);
     }
+
+
+    public static void changeLoginButtonState(String locator, String attribute) {
+        WebActionManager.getAttribute(LoginConstants.LOG_IN_BUTTON, attribute);
+    }
+
 
     public static void enableInputEmail() {
         WebActionManager.click(LoginConstants.EMAIL_INPUT);
     }
-    public static void enableInputPassword(String input) {
+    public static void enableInputPassword() {
         WebActionManager.click(LoginConstants.PASSWORD_INPUT);
     }
 
@@ -83,4 +96,6 @@ public class LoginService extends ActionManager {
         WebActionManager.setInput(LoginConstants.PASSWORD_INPUT, password);
         WebActionManager.click(LoginConstants.LOG_IN_BUTTON);
     }
+
+
 }

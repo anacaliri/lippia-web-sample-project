@@ -56,20 +56,24 @@ public class LoginSteps {
         LoginService.clickOnReset(button);
     }
 
-    @Then("^error (.*) is displayed$")
+    @Then("^input password error message (.*) is displayed$")
     public void invalidCredentialsErrorIsDisplayed(String error) {
         LoginService.showInvalidCredentialsError(error);
 
     }
-    @Then("^(.*) email error is displayed$")
+
+    @Then("input email error ^(.*) is displayed$")
     public void requiredEmailErrorIsDisplayed(String error) {
         LoginService.showRequiredEmailError(error);
     }
 
-
-    @Then("^(.*) password error is displayed$")
+    @Then("^required password error (.*) is displayed$")
     public void requiredPasswordErrorIsDisplayed(String error) {
         LoginService.showRequiredPasswordError(error);
+    }
+    @Then("^invalid password error (.*) is displayed$")
+    public void invalidPasswordErrorIsDisplayed(String error) {
+        LoginService.showInvalidPasswordError(error);
     }
 
     @Then("^password (.*) is displayed$")
@@ -88,8 +92,8 @@ public class LoginSteps {
     }
 
     @Then("^(.*) button is (.*)$")
-    public void logInButtonIsDisable(String locator, String attribute) {
-        LoginService.disableButton(locator, attribute);
+    public void changeLoginButtonState(String locator, String attribute) {
+        LoginService.changeLoginButtonState(locator, attribute);
     }
     @Then("^user is in (.*) to reset the password$")
     public void userGoesToReset(String url) {
@@ -105,8 +109,17 @@ public class LoginSteps {
     public void userEnablesInputEmail() {
         LoginService.enableInputEmail();
     }
-    @And("user enables input (.*)$")
-    public void userEnablesInputPassword(String input) {
-        LoginService.enableInputPassword(input);
+    @And("^user enables input password")
+    public void userEnablesInputPassword() {
+        LoginService.enableInputPassword();
+    }
+
+    @And("^user erase password$")
+    public void userErasePassword() {
+        LoginService.erasePassword();
+    }
+    @And("^user clicks (.*) to inactive input$")
+    public void userClicksElsewhere(String locator) {
+        LoginService.clickElsewhere(locator);
     }
 }

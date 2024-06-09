@@ -13,7 +13,7 @@ public class LoginConstants {
     public static final String REQUIRED_PASSWORD_ERROR = "xpath://span[contains(text(),'Password is required')]";
     public static final String INVALID_PASSWORD_ERROR = "xpath://span[contains(text(),'Password is not valid')]";
 
-    public static final String INVALID_EMAIL_PASSWORD_ERROR = "xpath://div[contains(text(),'Invalid email or password ')]";
+    public static final String INVALID_EMAIL_PASSWORD_ERROR = "xpath://span[@class='ng-tns-c129-2'][@data-cy='error'][contains(text(),'Invalid email or password')]";
 
     public static final String INACTIVE_EYE_BUTTON = "xpath://img[@src='/assets/ui-icons/password-toggle.svg']";
     public static final String ACTIVE_EYE_BUTTON = "xpath://img[@src='/assets/ui-icons/password-toggle-active.svg']";

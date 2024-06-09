@@ -56,10 +56,9 @@ public class LoginSteps {
         LoginService.clickOnReset(button);
     }
 
-    @Then("^input password error message (.*) is displayed$")
+    @Then("^invalid credentials error (.*) is displayed$")
     public void invalidCredentialsErrorIsDisplayed(String error) {
         LoginService.showInvalidCredentialsError(error);
-
     }
 
     @Then("input email error ^(.*) is displayed$")

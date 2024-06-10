@@ -17,9 +17,8 @@ public class WorkspaceService extends ActionManager {
     }
 
     public static void clickOnCreateNewWorkspaceButton(String button) {
-        WebActionManager.waitVisibility(WorkspaceConstants.CREATE_NEW_WORKSPACE);
-        WebActionManager.waitClickable(WorkspaceConstants.CREATE_NEW_WORKSPACE);
-        WebActionManager.click(WorkspaceConstants.CREATE_NEW_WORKSPACE);
+        WebActionManager.click(WorkspaceConstants.CREATE_NEW_WORKSPACE_BUTTON,false);
+        WebActionManager.waitVisibility(WorkspaceConstants.CREATE_NEW_WORKSPACE_MODAL);
     }
 
 

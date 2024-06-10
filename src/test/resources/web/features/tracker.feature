@@ -10,4 +10,4 @@ Feature: Tracker
       | email                  | password        |
       | anabelcaliri@gmail.com | EzysE@7bY6_KAwX |
 
-
+@addNewTimeEntry

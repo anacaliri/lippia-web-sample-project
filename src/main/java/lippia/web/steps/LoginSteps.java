@@ -98,10 +98,10 @@ public class LoginSteps {
     public void userGoesToReset(String url) {
         ResetService.navigateTo(url);
     }
-    @Then("^user is in tracker page (.*) to start tracking work$")
-    public void userGoesToTracker(String url) {
-        TrackerService.navigateTo(url);
-    }
+   // @Then("^user is in tracker page (.*) to start tracking work$")
+   // public void userGoesToTracker(String url) {
+   //     TrackerService.navigateTo(url);
+   // }
 
 
     @And("^user enables input email")

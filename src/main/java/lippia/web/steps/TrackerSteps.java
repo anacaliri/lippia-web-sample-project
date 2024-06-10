@@ -1,6 +1,8 @@
 package lippia.web.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lippia.web.services.LoginService;
 import lippia.web.services.TrackerService;
@@ -24,5 +26,30 @@ public class TrackerSteps {
     @When("^user clicks (.*) in the side menu$")
     public void userClicksProjectsInTheSideMenu(String button) {
         TrackerService.clickOnProjects(button);
+    }
+
+    @When("^user inputs (.*) time entry to indicate the start of the period$")
+    public void userInputsStartTimeEntry(String startTime) {
+        TrackerService.inputStartTimeEntry(startTime);
+    }
+
+    @And("^user inputs (.*) time entry to indicate the end of the period$")
+    public void userInputsEndsTimeEntry(String endTime) {
+        TrackerService.inputEndTimeEntry(endTime);
+    }
+
+    @And("^user clicks (.*) button to add a new time entry$")
+    public void userClicksAddButtonToAddANewTimeEntry(String button) {
+        TrackerService.clickOnAddTimeEntry(button);
+    }
+
+    @When("^user inputs a description (.*)$")
+    public void userInputsADescription(String description) {
+        TrackerService.inputDescription(description);
+    }
+
+    @Then("^time entry with description (.*) has been created$")
+    public void timeEntryHasBeenCreated(String description) {
+        TrackerService.checkTimeEntry(description);
     }
 }

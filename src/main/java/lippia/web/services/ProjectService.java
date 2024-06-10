@@ -23,7 +23,6 @@ public class ProjectService extends ActionManager {
     }
 
 
-
     public static void clickOnCreateButton(String button) {
         WebActionManager.click(ProjectsConstants.CREATE_BUTTON);
     }

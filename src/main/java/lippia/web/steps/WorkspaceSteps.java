@@ -21,6 +21,10 @@ public class WorkspaceSteps {
     public void userClicksManageWorkspaces(String button) {
         WorkspaceService.clickOnManageWorkspaces(button);
     }
+    @And("^user clicks (.*) to go to workspace settings$")
+    public void userClicksWorkspaceSettings(String button) {
+        WorkspaceService.clickWorkspaceSettings(button);
+    }
 
     @And("^user clicks (.*) to go to create new workspace$")
     public void userClicksCreateNewWorkspaceButton(String button) {
@@ -38,9 +42,23 @@ public class WorkspaceSteps {
         WorkspaceService.clickOnCreateButton(button);
     }
 
+
+
+    @Then("^user is in workspaces page (.*)$")
+    public void userIsInWorkspacesPage(String url) {
+        WorkspaceService.navigateToWorkspaces(url);
+    }
+
+    @And("^user updates the workspace name to (.*)$")
+    public void userUpdatesTheWorkspaceName(String newName) {
+        WorkspaceService.updateWorkspaceName(newName);
+    }
     @Then("^workspace with name (.*) has been created$")
     public void workspaceHasBeenCreated(String name) {
         WorkspaceService.checkWorkspace(name);
     }
-
+    @Then("^workspace with name (.*) has been updated$")
+    public void workspaceWithNameNameHasBeenUpdated(String newName) {
+        WorkspaceService.checkWorkspaceUpdate(newName);
+    }
 }

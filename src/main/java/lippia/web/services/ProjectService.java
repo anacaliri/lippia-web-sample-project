@@ -3,6 +3,8 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.ProjectsConstants;
+import lippia.web.constants.WorkspaceConstants;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,6 +12,11 @@ import java.time.format.DateTimeFormatter;
 public class ProjectService extends ActionManager {
 
     public static void navigateTo(String option) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         WebActionManager.isVisible(ProjectsConstants.CREATE_NEW_PROJECT_BUTTON);
     }
     public static void clickOnCreateNewProjectButton(String button) {
@@ -27,8 +34,13 @@ public class ProjectService extends ActionManager {
         WebActionManager.click(ProjectsConstants.CREATE_BUTTON);
     }
 
-    public static void validateProjectCreation(String dynamicLocator) {
-        WebActionManager.isVisible(ProjectsConstants.PROJECT_CREATED);
+    public static void checkProject(String uniqueProjectName) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        WebActionManager.isVisible(ProjectsConstants.PROJECT, uniqueProjectName);
     }
 
 

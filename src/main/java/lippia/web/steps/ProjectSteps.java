@@ -26,8 +26,8 @@ public class ProjectSteps {
     }
 
 
-    @Then("^user is in projects page and the project (.*) has been created$")
-    public void userIsInProjectsPageAndTheProjectHasBeenCreated(String name) {
-        ProjectService.validateProjectCreation(name);
+    @Then("^project with name (.*) has been created$")
+    public void projectHasBeenCreated(String name) {
+        ProjectService.checkProject(name);
     }
 }

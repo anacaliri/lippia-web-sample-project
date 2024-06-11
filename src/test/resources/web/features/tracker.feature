@@ -20,24 +20,32 @@ Feature: Tracker
       | start | end   | description    |
       | 12:00 | 13:00 | Destornillador |
 
-  @editATimeEntryDescription
-  Scenario Outline: Edit a time entry description
-    Given user had set a time entry with description <description>, start time <start> and end time <end>
-    When user updates the description <description> to <new_description>
+  @updateATimeEntryDescription @run
+  Scenario Outline: Update a time entry description
+    Given time entry with description <description> has been created
+    When user updates the description to <new_description>
     Then time entry with description <new_description> has been updated
     Examples:
-      | start | end   | description | new_description |
-      | 12:00 | 13:00 | Caldo      | Puchero         |
+      | start | end   | description    | new_description |
+      | 12:00 | 13:00 | Destornillador | fruta           |
 
- # @editATimeEntryStartTime @run
- # Scenario Outline: Edit a time entry start time
- #   Given user is logged in Clockify with email <email> and password <password>
- #   And user had set a time entry with description <description>, start time <start> and end time <end>
- #   When user changes the start time to <change>
- #   Then time entry with start time <start> has been updated
- #   Examples:
- #     | email                  | password        | start | end   | start   | change |
- #     | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | 12:00 | 13:00 | Corcho2 | 08:00  |
+  #@updateATimeEntryDescription
+  #Scenario Outline: Update a time entry description
+  #  Given user had set a time entry with description <description>, start time <start> and end time <end>
+  #  When user updates the description to <new_description>
+  #  Then time entry with description <new_description> has been updated
+  #  Examples:
+  #    | start | end   | description | new_description |
+  #    | 12:00 | 13:00 | camote    | fruta           |
+#
+  #@updateATimeEntryStartTime
+  #Scenario Outline: Update a time entry start time
+  #  Given user had set a time entry with description <description>, start time <start> and end time <end>
+  #  When user updates the start time to <new_start_time>
+  #  Then time entry with start time <description> has been updated
+  #  Examples:
+  #    | start | end   | description | new_start_time |
+  #    | 12:00 | 13:00 | editable    | 12:30          |
 #
  # @editATimeEntryEndTime @run
  # Scenario Outline: Edit a time entry end time

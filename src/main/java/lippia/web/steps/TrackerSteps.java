@@ -53,26 +53,29 @@ public class TrackerSteps {
         TrackerService.setTimeEntry(description, startTime, endTime);
     }
 
-    @When("^user updates the description (.*) to (.*)$")
-    public void userChangesTheDescription(String description, String newDescription) {
-        TrackerService.updateTimeEntryDescription(description, newDescription);
-    }
-    //@And("^user changes the start time to (.*)$")
-    //public void userChangesTheStartTime(String change) {
+ @When("^user updates the description to (.*)$")
+ public void userUpdatesTheDescription(String newDescription) {
+     TrackerService.updateTimeEntryDescription(newDescription);
+ }
+//  @When("^user updates the start time to (.*)$")
+//  public void userUpdatesTheStartTime(String newStartTime) {
+//      TrackerService.updateTimeEntryStartTime(newStartTime);
+//  }
 
-    //}
-    //@And("^user changes the end time to (.*)$")
-    //public void userChangesTheEndTime(String change) {
 
-    //}
+
     @Then("^time entry with description (.*) has been created$")
     public void timeEntryHasBeenCreated(String description) {
         TrackerService.checkTimeEntry(description);
     }
 
-    @Then("^time entry with description (.*) has been updated$")
-    public void timeEntryDescriptionHasBeenUpdated(String newDescription) {
-        TrackerService.checkTimeEntryUpdatedDescription(newDescription);
-    }
+ @Then("^time entry with description (.*) has been updated$")
+ public void timeEntryDescriptionHasBeenUpdated(String newDescription) {
+     TrackerService.checkTimeEntryUpdatedDescription(newDescription);
+ }
+ //  @Then("^time entry with start time (.*) has been updated$")
+ //  public void timeEntryStartTImeHasBeenUpdated(String newStartTime) {
+ //      TrackerService.checkTimeEntryUpdatedStartTime(newStartTime);
+ //  }
 
 }

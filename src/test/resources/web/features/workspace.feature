@@ -4,7 +4,7 @@ Feature: Workspace
   Background:
     Given user is logged in Clockify with email anabelcaliri@gmail.com and password EzysE@7bY6_KAwX
 
-  @goToManageWokspaces @smoke @success
+  @goToManageWorkspaces @smoke @success
   Scenario Outline: Go to manage workspaces
     When user clicks workspace dropdown to see workspace options
     And user clicks manage workspaces to go to workspaces

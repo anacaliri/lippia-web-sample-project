@@ -1,4 +1,4 @@
-@tracker
+@tracker @run
 Feature: Tracker
 
   Background:
@@ -9,7 +9,7 @@ Feature: Tracker
     When user clicks Projects in the side menu
     Then user is in Projects page to start creating projects
 
-  @addNewTimeEntry
+  @addNewTimeEntry @run
   Scenario Outline: Add new time entry
     When user inputs <start> time entry to indicate the start of the period
     And user inputs <end> time entry to indicate the end of the period
@@ -17,27 +17,19 @@ Feature: Tracker
     And user clicks Add button to add a new time entry
     Then time entry with description <description> has been created
     Examples:
-      | start | end   | description    |
-      | 12:00 | 13:00 | Destornillador |
+      | start | end   | description  |
+      | 12:00 | 13:00 | Time Entry # |
 
-  @updateATimeEntryDescription @run
+  @updateATimeEntryDescription
   Scenario Outline: Update a time entry description
-    Given time entry with description <description> has been created
+    Given user had set a time entry with description <description>, start time <start> and end time <end>
     When user updates the description to <new_description>
     Then time entry with description <new_description> has been updated
     Examples:
-      | start | end   | description    | new_description |
-      | 12:00 | 13:00 | Destornillador | fruta           |
+      | start | end   | description  | new_description |
+      | 12:00 | 13:00 | Time Entry # | Time Entry ###   |
 
-  #@updateATimeEntryDescription
-  #Scenario Outline: Update a time entry description
-  #  Given user had set a time entry with description <description>, start time <start> and end time <end>
-  #  When user updates the description to <new_description>
-  #  Then time entry with description <new_description> has been updated
-  #  Examples:
-  #    | start | end   | description | new_description |
-  #    | 12:00 | 13:00 | camote    | fruta           |
-#
+
   #@updateATimeEntryStartTime
   #Scenario Outline: Update a time entry start time
   #  Given user had set a time entry with description <description>, start time <start> and end time <end>

@@ -8,9 +8,14 @@ public class TrackerConstants {
     public static final String INPUT_DESCRIPTION = "xpath://input[contains(@placeholder,'What have you worked on?')]";
     public static final String TIME_ENTRY = "xpath://div[contains(text(),'%s')]";
     public static final String TIME_ENTRY_DESCRIPTION = "xpath://div[@data-cy='time-entry-description'][contains(text(),'%s')]";
-    public static final String TIME_ENTRY_DESCRIPTION_UPDATE = "xpath://input[@placeholder='Add description']";
+   public static final String TIME_ENTRY_DESCRIPTION_UPDATE = "xpath://input[@placeholder='Add description']";
+    public static final String TIME_ENTRY_DESCRIPTION_CHECKER = "xpath://div[@data-cy='time-entry-description'][contains(text(),'%s')]/preceding-sibling::input[@placeholder='Add description']";
+    public static final String TIME_ENTRY_DESCRIPTION_UPDATE_INPUT = "xpath://div[@data-cy='time-entry-description'][contains(text(),'%s')]/preceding-sibling::input[@placeholder='Add description']";
+
     public static final String TIME_ENTRY_START_TIME = "xpath://div[4]/div/single-date-picker2/div/input-time-ampm[1]]";
     public static final String TIME_ENTRY_END_TIME = "xpath://div[4]/div/single-date-picker2/div/input-time-ampm[1]]";
     public static final String LOGO = "xpath://img[@alt='Clockify logo']";
+
+    public static final String PUTO = "xpath://input[@placeholder='Add description']/following-sibling::div[@data-cy='time-entry-description'][contains(text(),' ')]";
 
 }

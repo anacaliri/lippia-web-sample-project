@@ -3,7 +3,11 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.TrackerConstants;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class TrackerService extends ActionManager {
@@ -15,6 +19,7 @@ public class TrackerService extends ActionManager {
     }
 
     public static void inputDescription(String description) {
+        description = description + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         WebActionManager.getElement(TrackerConstants.INPUT_DESCRIPTION).click();
         WebActionManager.setInput(TrackerConstants.INPUT_DESCRIPTION, description);
     }
@@ -44,6 +49,7 @@ public class TrackerService extends ActionManager {
         WebActionManager.getElement(TrackerConstants.INPUT_END).click();
         WebActionManager.setInput(TrackerConstants.INPUT_END, endTime);
         WebActionManager.getElement(TrackerConstants.INPUT_DESCRIPTION).click();
+        description = description + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         WebActionManager.setInput(TrackerConstants.INPUT_DESCRIPTION, description);
         WebActionManager.waitPresence(TrackerConstants.ADD_BUTTON);
         WebActionManager.click(TrackerConstants.ADD_BUTTON);
@@ -53,28 +59,42 @@ public class TrackerService extends ActionManager {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION, description);
+        WebActionManager.getElement(TrackerConstants.PUTO, description);
     }
 
-    public static void checkTimeEntry(String description) {
+ public static void checkTimeEntry(String description) {
+     try {
+         Thread.sleep(5000);
+     } catch (InterruptedException e) {
+         throw new RuntimeException(e);
+     }
+     WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION_CHECKER, description);
+ }
+
+    public static void updateTimeEntryDescription(String newDescription) {
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION, description);
-    }
-
-    public static void updateTimeEntryDescription(String newDescription) {
+        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION_UPDATE).click();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
         WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION_UPDATE).clear();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        newDescription = newDescription + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
         WebActionManager.setInput(TrackerConstants.TIME_ENTRY_DESCRIPTION_UPDATE, newDescription);
         WebActionManager.getElement(TrackerConstants.LOGO).click();
     }
+
 
     public static void checkTimeEntryUpdatedDescription(String newDescription) {
         try {
@@ -82,8 +102,10 @@ public class TrackerService extends ActionManager {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION_UPDATE, newDescription);
+        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION_CHECKER, newDescription);
     }
+
+
 //
 //public static void updateTimeEntryStartTime(String newStartTime) {
 //    try {

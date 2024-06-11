@@ -8,7 +8,9 @@ public class TrackerConstants {
     public static final String INPUT_END = "xpath://div[1]/input-time-ampm[2]/input";
     public static final String ADD_BUTTON = "xpath://button[@type='button'][contains(text(),'Add')]";
     public static final String INPUT_DESCRIPTION = "xpath://input[contains(@placeholder,'What have you worked on?')]";
-    public static final String TIME_ENTRIES_TABLE = "xpath://*[@id='layout-main']/div/tracker2/div/div/div/div/entry-group[1]/div";
     public static final String TIME_ENTRY = "xpath://div[contains(text(),'%s')]";
+    public static final String TIME_ENTRY_DESCRIPTION = "xpath://div[contains(text(),'%s')]";
+    public static final String TIME_ENTRY_START_TIME = "xpath://div[4]/div/single-date-picker2/div/input-time-ampm[1]]";
+    public static final String TIME_ENTRY_END_TIME = "xpath://div[4]/div/single-date-picker2/div/input-time-ampm[1]]";
 
 }

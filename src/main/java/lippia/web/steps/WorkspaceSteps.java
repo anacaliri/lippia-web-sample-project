@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import lippia.web.constants.LoginConstants;
 import lippia.web.services.LoginService;
 import lippia.web.services.LogoutService;
+import lippia.web.services.TrackerService;
 import lippia.web.services.WorkspaceService;
 
 public class WorkspaceSteps {
@@ -37,5 +38,9 @@ public class WorkspaceSteps {
         WorkspaceService.clickOnCreateButton(button);
     }
 
+    @Then("^workspace with name (.*) has been created$")
+    public void workspaceHasBeenCreated(String name) {
+        WorkspaceService.checkWorkspace(name);
+    }
 
 }

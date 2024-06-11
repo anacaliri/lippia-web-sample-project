@@ -9,4 +9,6 @@ public class WorkspaceConstants {
     public static final String NAME_INPUT = "xpath://input[@type='text'][@formcontrolname='name']";
     public static final String CREATE_BUTTON = "xpath://button[@type='submit'][contains(text(),'Create')]";
 
+    public static final String WORKSPACE = "xpath://span[contains(text(),'%s')]";
+
 }

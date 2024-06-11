@@ -15,12 +15,11 @@ public class TrackerSteps {
     public void userIsLoggedIn(String email, String password) {
         LoginService.doLogIn(email, password);
     }
+
     @When("^user clicks option (.*) from the menu$")
     public void userClicksOptionFromTheMenu(String button) {
         TrackerService.click(button);
     }
-
-
 
 
     @When("^user clicks (.*) in the side menu$")
@@ -48,8 +47,32 @@ public class TrackerSteps {
         TrackerService.inputDescription(description);
     }
 
+
+    @And("^user had set a time entry with description (.*), start time (.*) and end time (.*)$")
+    public void userHadSetATimeEntry(String description, String startTime, String endTime) {
+        TrackerService.setTimeEntry(description, startTime, endTime);
+    }
+
+    @When("^user updates the description (.*) to (.*)$")
+    public void userChangesTheDescription(String description, String newDescription) {
+        TrackerService.updateTimeEntryDescription(description, newDescription);
+    }
+    //@And("^user changes the start time to (.*)$")
+    //public void userChangesTheStartTime(String change) {
+
+    //}
+    //@And("^user changes the end time to (.*)$")
+    //public void userChangesTheEndTime(String change) {
+
+    //}
     @Then("^time entry with description (.*) has been created$")
     public void timeEntryHasBeenCreated(String description) {
         TrackerService.checkTimeEntry(description);
     }
+
+    @Then("^time entry with description (.*) has been updated$")
+    public void timeEntryDescriptionHasBeenUpdated(String newDescription) {
+        TrackerService.checkTimeEntryUpdatedDescription(newDescription);
+    }
+
 }

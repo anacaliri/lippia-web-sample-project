@@ -4,6 +4,7 @@ import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.LoginConstants;
 import lippia.web.constants.LogoutConstants;
+import lippia.web.constants.TrackerConstants;
 import lippia.web.constants.WorkspaceConstants;
 
 
@@ -28,8 +29,13 @@ public class WorkspaceService extends ActionManager {
     public static void clickOnCreateButton(String button) {
         WebActionManager.click(WorkspaceConstants.CREATE_BUTTON);
     }
-    public static void navigateTo(String url) {
-        WebActionManager.navigateTo(url);
+    public static void checkWorkspace(String name) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        WebActionManager.getElement(WorkspaceConstants.WORKSPACE, name);
     }
 
 }

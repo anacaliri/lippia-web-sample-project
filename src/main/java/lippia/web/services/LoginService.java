@@ -3,6 +3,7 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.LoginConstants;
+import lippia.web.constants.TrackerConstants;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -102,4 +103,5 @@ public class LoginService extends ActionManager {
         WebElement input = WebActionManager.getElement(LoginConstants.EMAIL_INPUT);
         input.clear();
     }
+
 }

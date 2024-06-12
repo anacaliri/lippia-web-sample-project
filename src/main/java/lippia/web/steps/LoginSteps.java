@@ -17,7 +17,6 @@ public class LoginSteps {
     @Then("^user is in manual login page (.*)$")
     public void userIsInManualLogIn(String url) {
         LoginService.navigateTo(url);
-        //LoginService.validateLoginButtonIsVisible();
     }
     @When("^user clicks (.*) button to log in manually$")
     public void clickOnLogInManuallyButton(String button) {
@@ -123,5 +122,10 @@ public class LoginSteps {
     @Given("^user is logged in with email (.*) and password (.*)$")
     public void userIsLoggedIn(String email, String password) {
         LoginService.doLogIn(email, password);
+    }
+
+    @Then("^user is in tracker page (.*) to start tracking work$")
+    public void userIsInTrackerPage(String url) {
+        LoginService.navigateTo(url);
     }
 }

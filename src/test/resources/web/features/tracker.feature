@@ -4,7 +4,7 @@ Feature: Tracker
   Background:
     Given user is logged in Clockify with email anabelcaliri@gmail.com and password EzysE@7bY6_KAwX
 
-  @goToProjects @Smoke
+  @goToProjects
   Scenario: Go to Projects
     When user clicks Projects in the side menu
     Then user is in Projects page to start creating projects

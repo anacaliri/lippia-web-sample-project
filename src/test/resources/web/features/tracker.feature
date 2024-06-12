@@ -1,4 +1,4 @@
-@tracker @run
+@tracker
 Feature: Tracker
 
   Background:
@@ -9,7 +9,7 @@ Feature: Tracker
     When user clicks Projects in the side menu
     Then user is in Projects page to start creating projects
 
-  @addNewTimeEntry @run
+  @addNewTimeEntry
   Scenario Outline: Add new time entry
     When user inputs <start> time entry to indicate the start of the period
     And user inputs <end> time entry to indicate the end of the period
@@ -27,25 +27,23 @@ Feature: Tracker
     Then time entry with description <new_description> has been updated
     Examples:
       | start | end   | description  | new_description |
-      | 12:00 | 13:00 | Time Entry # | Time Entry ###   |
+      | 12:00 | 13:00 | Time Entry # | Time Entry ###  |
 
 
-  #@updateATimeEntryStartTime
-  #Scenario Outline: Update a time entry start time
-  #  Given user had set a time entry with description <description>, start time <start> and end time <end>
-  #  When user updates the start time to <new_start_time>
-  #  Then time entry with start time <description> has been updated
-  #  Examples:
-  #    | start | end   | description | new_start_time |
-  #    | 12:00 | 13:00 | editable    | 12:30          |
-#
- # @editATimeEntryEndTime @run
- # Scenario Outline: Edit a time entry end time
- #   Given user is logged in Clockify with email <email> and password <password>
- #   And user had set a time entry with description <description>, start time <start> and end time <end>
- #   When user changes the end time to <change>
- #   Then time entry with end time <end> has been updated
- #   Examples:
- #     | email                  | password        | start | end   | description | change |
- #     | anabelcaliri@gmail.com | EzysE@7bY6_KAwX | 12:00 | 13:00 | Corcho2     | 23     |
-#
+  @updateATimeEntryStartTime
+  Scenario Outline: Update a time entry start time
+    Given user had set a time entry with description <description>, start time <start> and end time <end>
+    When user updates the start time to <new_start_time>
+    Then time entry with start time <new_start_time> has been updated
+    Examples:
+      | start | end   | description  | new_start_time |
+      | 10:00 | 11:00 | Time Entry # | 23:23          |
+
+  @updateATimeEntryEndTime 
+  Scenario Outline: Update a time entry end time
+    Given user had set a time entry with description <description>, start time <start> and end time <end>
+    When user updates the end time to <new_end_time>
+    Then time entry with end time <new_end_time> has been updated
+    Examples:
+      | start | end   | description  | new_end_time |
+      | 10:00 | 11:00 | Time Entry # | 12:12        |

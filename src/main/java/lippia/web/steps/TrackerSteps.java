@@ -53,35 +53,42 @@ public class TrackerSteps {
         TrackerService.setTimeEntry(description, startTime, endTime);
     }
 
- //@When("^user updates the description (.*) to (.*)$")
- //public void userUpdatesTheDescription(String description, String newDescription) {
- //    TrackerService.updateTimeEntryDescription(description, newDescription);
- //}
+    //@When("^user updates the description (.*) to (.*)$")
+    //public void userUpdatesTheDescription(String description, String newDescription) {
+    //    TrackerService.updateTimeEntryDescription(description, newDescription);
+    //}
     @When("^user updates the description to (.*)$")
     public void userUpdatesTheDescription(String newDescription) {
         TrackerService.updateTimeEntryDescription(newDescription);
     }
-//  @When("^user updates the start time to (.*)$")
-//  public void userUpdatesTheStartTime(String newStartTime) {
-//      TrackerService.updateTimeEntryStartTime(newStartTime);
-//  }
+
+    @When("^user updates the start time to (.*)$")
+    public void userUpdatesTheStartTime(String newStartTime) {
+        TrackerService.updateTimeEntryStartTime(newStartTime);
+    }
+    @When("^user updates the end time to (.*)$")
+    public void userUpdatesTheEndTime(String newEndTime) {
+        TrackerService.updateTimeEntryEndTime(newEndTime);
+    }
 
 
+    @Then("^time entry with description (.*) has been created$")
+    public void timeEntryHasBeenCreated(String description) {
+        TrackerService.checkTimeEntry(description);
+    }
 
-   @Then("^time entry with description (.*) has been created$")
-   public void timeEntryHasBeenCreated(String description) {
-       TrackerService.checkTimeEntry(description);
-   }
-
- @Then("^time entry with description (.*) has been updated$")
- public void timeEntryDescriptionHasBeenUpdated(String newDescription) {
-     TrackerService.checkTimeEntryUpdatedDescription(newDescription);
- }
+    @Then("^time entry with description (.*) has been updated$")
+    public void timeEntryDescriptionHasBeenUpdated(String newDescription) {
+        TrackerService.checkTimeEntryUpdatedDescription(newDescription);
+    }
 
 
-    //  @Then("^time entry with start time (.*) has been updated$")
- //  public void timeEntryStartTImeHasBeenUpdated(String newStartTime) {
- //      TrackerService.checkTimeEntryUpdatedStartTime(newStartTime);
- //  }
-
+     @Then("^time entry with start time (.*) has been updated$")
+     public void timeEntryStartTimeHasBeenUpdated(String newStartTime) {
+         TrackerService.checkTimeEntryUpdatedStartTime(newStartTime);
+     }
+    @Then("^time entry with end time (.*) has been updated$")
+    public void timeEntryEndTimeHasBeenUpdated(String newEndTime) {
+        TrackerService.updateTimeEntryEndTime(newEndTime);
+    }
 }

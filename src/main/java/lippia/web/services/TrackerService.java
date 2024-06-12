@@ -3,8 +3,6 @@ package lippia.web.services;
 import com.crowdar.core.actions.ActionManager;
 import com.crowdar.core.actions.WebActionManager;
 import lippia.web.constants.TrackerConstants;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -59,7 +57,7 @@ public class TrackerService extends ActionManager {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        WebActionManager.getElement(TrackerConstants.PUTO, description);
+        WebActionManager.getElement(TrackerConstants.TIME_ENTRY_DESCRIPTION, description);
     }
 
     public static void checkTimeEntry(String description) {

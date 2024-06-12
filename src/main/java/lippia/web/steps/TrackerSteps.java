@@ -53,10 +53,7 @@ public class TrackerSteps {
         TrackerService.setTimeEntry(description, startTime, endTime);
     }
 
-    //@When("^user updates the description (.*) to (.*)$")
-    //public void userUpdatesTheDescription(String description, String newDescription) {
-    //    TrackerService.updateTimeEntryDescription(description, newDescription);
-    //}
+
     @When("^user updates the description to (.*)$")
     public void userUpdatesTheDescription(String newDescription) {
         TrackerService.updateTimeEntryDescription(newDescription);
@@ -89,6 +86,6 @@ public class TrackerSteps {
      }
     @Then("^time entry with end time (.*) has been updated$")
     public void timeEntryEndTimeHasBeenUpdated(String newEndTime) {
-        TrackerService.updateTimeEntryEndTime(newEndTime);
+        TrackerService.checkTimeEntryUpdatedEndTime(newEndTime);
     }
 }

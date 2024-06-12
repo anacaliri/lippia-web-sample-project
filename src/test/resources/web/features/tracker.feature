@@ -39,7 +39,7 @@ Feature: Tracker
       | start | end   | description  | new_start_time |
       | 10:00 | 11:00 | Time Entry # | 23:23          |
 
-  @updateATimeEntryEndTime 
+  @updateATimeEntryEndTime
   Scenario Outline: Update a time entry end time
     Given user had set a time entry with description <description>, start time <start> and end time <end>
     When user updates the end time to <new_end_time>
